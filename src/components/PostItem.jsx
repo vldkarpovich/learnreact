@@ -3,6 +3,14 @@ import MyButton from "./UI/button/MyButton";
 
 const PostItem = (props) => {
 
+
+  const addToBasket = (post)=>{
+    props.setBasket([post])
+    //totalSum = basket.reduce((a,v) => a = a + v.price, 0 )
+    console.log(props.basket)
+    //console.log(totalSum.toFixed(2))
+    }
+
   if(props.post.licensed){
 
     return(
@@ -14,7 +22,7 @@ const PostItem = (props) => {
               </div>
         </div>
         <div className="post__btns">
-          <MyButton onClick={() => props.addToBasket(props.post)}> 
+          <MyButton onClick={() => addToBasket(props.post)}> 
             add to basket 
           </MyButton>
         </div>
@@ -31,7 +39,7 @@ const PostItem = (props) => {
             </div>
       </div>
       <div className="post__btns">
-        <MyButton onClick={() => props.addToBasket(props.post)}> 
+        <MyButton onClick={() => addToBasket(props.post)}> 
           add to basket 
         </MyButton>
       </div>

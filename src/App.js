@@ -39,13 +39,6 @@ function App() {
     setModal(true)
   }
 
-  const addToBasket = useCallback((post)=>{
-      setBasket([...basket, post])
-      //totalSum = basket.reduce((a,v) => a = a + v.price, 0 )
-      console.log(basket)
-      //console.log(totalSum.toFixed(2))
-  },[basket])
-
   useEffect(()=>{
     fetchPosts(pageSize, pageNumber)
   }, [])
@@ -96,7 +89,7 @@ function App() {
       }
       {isPostsLoading
         ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}> <Loader/> </div>
-        : <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Post list" getCarInfo={getCarInfo} basket={addToBasket} setModal={setModal}/>
+        : <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Post list" getCarInfo={getCarInfo} basket={setBasket} setModal={setModal}/>
       }
         <div className="page__wrapper">
           {pagesArray.map(p => 
