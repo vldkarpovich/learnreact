@@ -11,7 +11,7 @@ export default class PostService {
         return response;
     }
 
-    static async getOne(id){
+    static async getOneById(id){
         const response = await axios.get('http://localhost:28114/api/cars/getvehicle?id=' + id)
         return response.data;
     }
