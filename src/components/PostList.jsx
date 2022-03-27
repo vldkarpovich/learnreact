@@ -25,7 +25,7 @@ const PostList = ({posts, title, remove, id, getCarInfo, basket, setModal}) => {
               timeout={500}
               classNames="post"
               >
-            <PostItem remove={remove} number={index + 1} post={post} getCarInfo={getCarInfo} addToBasket={basket} setModal={setModal}/>
+            <PostItem remove={remove} number={index + 1} post={post} addToBasket={basket} />
             </CSSTransition>
           )}
         </TransitionGroup>

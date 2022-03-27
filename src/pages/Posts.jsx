@@ -43,8 +43,6 @@ function Posts() {
   const addToBasket = (post)=>{
       setBasket([...basket, post])
       setTotalSum(basket.reduce((a,v) => a = a + v.price, 0 ))
-      console.log(basket)
-      //console.log(totalSum.toFixed(2))
   }
 
   useEffect(()=>{

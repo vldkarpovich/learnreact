@@ -1,16 +1,16 @@
 import React from "react";
 import MyButton from "./UI/button/MyButton";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PostItem = (props) => {
 
-  const router = useNavigate();
+  const navigate = useNavigate();
 
   if(props.post.licensed){
 
     return(
-        <div className="post"> {/* props.getCarInfo(props.post.id) */}
-        <div onClick={() => router('/posts/'+(props.post.id))} className="post__content" >
+        <div className="post">
+        <div onClick={() => navigate('/posts/'+(props.post.id))} className="post__content" >
           <strong>{props.number}. {props.post.make} {props.post.model} {props.post.year_model}; price: {props.post.price}</strong>
               <div>
                 {props.post.date_added}
