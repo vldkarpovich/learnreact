@@ -17,7 +17,7 @@ const PostItem = (props) => {
               </div>
         </div>
         <div className="post__btns">
-          <MyButton onClick={() => props.addToBasket(props.post)}> 
+          <MyButton onClick={() => props.addToBasket(props.post.id)}> 
             add to basket 
           </MyButton>
         </div>
@@ -34,7 +34,7 @@ const PostItem = (props) => {
             </div>
       </div>
       <div className="post__btns">
-        <MyButton onClick={() => props.addToBasket(props.post)}> 
+        <MyButton onClick={() => props.addToBasket(props.post.id)}> 
           add to basket 
         </MyButton>
       </div>

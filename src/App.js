@@ -7,15 +7,12 @@ import { BasketContext } from './context';
 
 function App() {
 
-  const [basket, setBasket] = useState([]);
-  const [totalSum, setTotalSum] = useState();
+  const [countBasket, setCountBasket] = useState(0);
 
   return (
     <BasketContext.Provider value={{
-      basket,
-      setBasket,
-      totalSum,
-      setTotalSum
+      countBasket,
+      setCountBasket
     }}>
       <BrowserRouter>
         <Navbar/>

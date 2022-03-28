@@ -1,13 +1,31 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import MyButton from '../components/UI/button/MyButton';
+import { useFetching } from '../hooks/useFetching';
+import PostService from '../API/PostService';
 import { BasketContext } from '../context';
 
 const Basket = () => {
-  const {basket, setBasket, totalSum, setTotalSum} = useContext(BasketContext);
 
-  const deleteFromBasket = (car)=>{
-    setBasket(basket.filter(p => p.id !== car.id))
-    setTotalSum(basket.reduce((a,v) => a = a + v.price, 0 ))
+  const {countBasket, setCountBasket} = useContext(BasketContext);
+  const [basket, setBasket] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [fetchBasket, isLoading, error] = useFetching(async () => {
+      const response = await PostService.getBasket();
+      setBasket(response.vehicles);
+      setTotalPrice(response.totalPrice);
+  })
+
+  useEffect(() => {
+    fetchBasket()
+    console.log('biba')
+  }, [])
+
+
+  const deleteFromBasket = async (car)=>{
+    const response = await PostService.deleteFromBasket(car);
+    setBasket(response);
+    fetchBasket();
+    setCountBasket(basket.length -1)
 }
 
   return (
@@ -18,11 +36,11 @@ const Basket = () => {
                 <ul>
                     {basket.map((post) => 
                         <li key={post.id}>
-                            {post.make} {post.model} {post.year_model} {post.price} <MyButton onClick={() => deleteFromBasket(post)}>X</MyButton>
+                            {post.make} {post.model} - {post.year_model}; price: {post.price} <MyButton onClick={() => deleteFromBasket(post.id)}>X</MyButton>
                         </li>
                     )}
                 </ul>
-                <h4>Total price: {totalSum.toFixed(2)}</h4>
+                <h4>Total price: {totalPrice.toFixed(2)}</h4>
                 <MyButton>Pay and order</MyButton>
             </div>
         }

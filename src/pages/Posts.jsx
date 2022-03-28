@@ -13,8 +13,9 @@ import {getPageCount} from '../utils/pages';
 import { BasketContext } from '../context';
 
 function Posts() {
-  const {basket, setBasket, totalSum, setTotalSum} = useContext(BasketContext);
+  const {countBasket, setCountBasket} = useContext(BasketContext);
   const [posts, setPosts] = useState([])
+  //const [countBasket, setCountBasket] = useState(0);
   const [filter, setFilter] = useState({sort: '', query: ''})
   const [modal, setModal] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
@@ -26,10 +27,11 @@ function Posts() {
   
   const [fetchPosts, isPostsLoading, postError] = useFetching( async (pageSize, pageNumber)=>{
     const response = await PostService.getAll(pageSize, pageNumber);
+    const basketResponse = await PostService.getBasket();
+    setCountBasket(basketResponse.vehicles.length)
     setPosts(response.data)
     const totalCount = response.headers['x-total-count']
     setTotalPages(getPageCount(totalCount, pageSize))
-    console.log(basket)
   })
   const [car, setCar] = useState({});
 
@@ -40,15 +42,12 @@ function Posts() {
     setModal(true)
   }
 
-  const addToBasket = (post)=>{
-      setBasket([...basket, post])
-      setTotalSum(basket.reduce((a,v) => a = a + v.price, 0 ))
+  const addToBasket = async (post)=>{
+      const count = await PostService.postAddToBasket(post);
+      setCountBasket(count)
   }
 
-  useEffect(()=>{
-    console.log(',b,')
-    console.log(basket)
-  }, [basket])
+ 
 
   useEffect(()=>{
     fetchPosts(pageSize, pageNumber)
