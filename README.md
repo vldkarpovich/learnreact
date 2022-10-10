@@ -1,3 +1,11 @@
+# Online car shop.
+In this project i learned React, backend service for processing request (https://github.com/MimoKassy96/BackCarShop)
+## Technologies
++ React
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
