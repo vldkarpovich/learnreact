@@ -1,5 +1,6 @@
 # Online car shop.
-In this project i learned React, backend service for processing request (https://github.com/MimoKassy96/BackCarShop)
+This is frontend application for placing vehicles from warehouses, in this project i learned React. 
+Backend service for processing requests(https://github.com/MimoKassy96/BackCarShop)
 ## Technologies
 + React
 
